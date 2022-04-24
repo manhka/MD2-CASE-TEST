@@ -54,9 +54,12 @@ public class PlayerView {
                 new ProductCatalogView().manage_product_catalog();
                manageProduct();
                 break;
-
             case 8: //home
-                new Main().Main1();
+                new Main();
+                break;
+            default:
+                System.out.println("one of those number ---->");
+                manageProduct();
                 break;
         }
     }
@@ -95,13 +98,14 @@ public class PlayerView {
             case 5:  // thanh toan
                 new ProductController().calculator();
                 System.out.println("THANKS ! SEE YOU SOON, KK");
-                manageProduct();
+                order();
                 break;
             case 6: // come home
-                new Main().Main1();
-
+                new Main();
                 break;
-
+            default:
+                System.out.println("one of those number__________>");
+                order();
         }
     }
 }

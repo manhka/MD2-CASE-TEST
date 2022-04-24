@@ -32,10 +32,9 @@ public class PlayerServiceIMPL implements IPlayerService {
 
     @Override
     public void logOut() {
-        System.out.println("??????????");
+
 //        productCategoryServiceIMPL.nameCategories123.clear();
         new ConfigReadAndWrite<String>().writeIntoFile(productCategoryServiceIMPL.PATH_ProductCatalog, productCategoryServiceIMPL.list5);
-        System.out.println("size cate name="+ productCategoryServiceIMPL.list5);
         productCategoryServiceIMPL.categoryList.clear();
         new ConfigReadAndWrite<ProductCategory>().writeIntoFile(productCategoryServiceIMPL.PATH_ProductCatalog, productCategoryServiceIMPL.categoryList);
         playerRunningServiceIMPL.playerRunningList.clear();
@@ -53,7 +52,7 @@ public class PlayerServiceIMPL implements IPlayerService {
     }
 
     @Override
-    public boolean checkLogin(String username, String password) {
+    public boolean  checkLogin(String username, String password) {
         for (int i = 0; i < playerList.size(); i++) {
 
             if (username.equals(playerList.get(i).getFirstname() + playerList.get(i).getLastname()) && password.equals(playerList.get(i).getPassword())) {

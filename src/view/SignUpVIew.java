@@ -29,7 +29,6 @@ public class SignUpVIew {
             if (!checkAccount) {
                 System.out.println("ACCOUNT IS NOT INVALID! Please try again!");
                 new SignUpVIew();
-
             } else if (playerServiceIMPL.existedByUsername(account)) {
                 System.err.println("ACCOUNT is existed! Please try again!");
                 System.out.println("1 TO LOG IN OR 2 TO SIGN UP AGAIN");
@@ -62,6 +61,6 @@ public class SignUpVIew {
         strRole.add(role);
         SignUpDTO signUpDTO = new SignUpDTO(firstname, lastname, password, strRole);
         playerController.register(signUpDTO);
-        new Main().Main1();
+        new Main();
     }
 }

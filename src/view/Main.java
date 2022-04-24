@@ -17,16 +17,14 @@ import java.util.Set;
 public class Main {
     Scanner scanner = new Scanner(System.in);
 
-    public void Main1() {
+    public  Main() {
         System.out.println("1:SIGN UP");
         System.out.println("2:LOG IN");
         System.out.print("ENTER YOUR NUMBER: ");
         int choice = scanner.nextInt();
         if (choice == 1) {
-            // sign up
             new SignUpVIew();
         } else if (choice == 2) {
-            // log in
             if (new PlayerRunningServiceIMPL().playerRunningList.size() != 0) {
                 new PlayerController().logOut();
             }
@@ -44,17 +42,14 @@ public class Main {
             } else {
                 new PlayerView().manageProduct();
             }
-
         } else {
-            System.out.println("1 or 2 , Broooooooooo???");
+            System.out.println("1 or 2 , Bro???");
         }
         new PlayerController().logOut();
     }
 
     public static void main(String[] args) {
-        // sợ chạy nhiêuf lần bị ghi vào file nhiều lần
-
-        new Main().Main1();
+        new Main();
 
     }
 }

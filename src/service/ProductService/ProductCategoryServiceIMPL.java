@@ -29,122 +29,70 @@ public class ProductCategoryServiceIMPL implements IProductCategoryService {
     List<Product> productList1=new ArrayList<>();
     List<Product>productList12345=new ProductServiceIMPL().productList;
 public void WhenNameCategorySize0(){
-//        list5.add(productList12345.get(0).getType());
-//        System.out.println("product list= "+productServiceIMPL.productList);
+
         for (int i = 0; i < productServiceIMPL.productList.size(); i++) {
-//            System.out.println(productServiceIMPL.productList.size());
-//            System.out.println(list5.contains(productServiceIMPL.productList.get(i).getType().trim()));
+
             if (!(list5.contains(productServiceIMPL.productList.get(i).getType().trim()))){
                 list5.add(productServiceIMPL.productList.get(i).getType().trim());
-//                nameCategories123.add(productServiceIMPL.productList.get(i).getType().trim());
             }
         }
     new ConfigReadAndWrite<String>().writeIntoFile(PATH,list5);
-        System.out.println("list5="+list5);
-//        for (int j = 0; j < list5.size(); j++) {
-////                System.out.println("list5="+list5.get(j));
-//            new ConfigReadAndWrite<String>().writeIntoFile(PATH,nameCategories123);
-//            for (int k = 0; k < productServiceIMPL.productList.size(); k++) {
-//                if ((list5.get(j).trim()).equals(productServiceIMPL.productList.get(k).getType().trim())){
-//                    if (!(productList1.contains(productServiceIMPL.productList.get(k).getProductName()))){
-//                        System.out.println("k="+k);
-//                        Product product=new Product(productServiceIMPL.productList.get(k).getId(),
-//                                productList12345.get(k).getProductName(),
-//                                productList12345.get(k).getDescription(),
-//                                productList12345.get(k).getBrand(),
-//                                productList12345.get(k).getType(),
-//                                productList12345.get(k).getPrice());
-//                        productList1.add(product);
-//                        list.add(productList12345.get(j));
-//                        new ConfigReadAndWrite<Product>().writeIntoFile(PATH,list);
-//                    }
-//
-//                }
-//
-//            }
-//            categoryList.add(new ProductCategory(categoryList.size()+1,list5.get(j),list));
-//
-//            new ConfigReadAndWrite<ProductCategory>().writeIntoFile(PATH_ProductCatalog, categoryList);
-//        }
-////        System.out.println("ok="+list);
-////        System.out.println("list5="+list5);
-//        System.out.println("?  "+productServiceIMPL.productList);
-//        System.out.println("productlist1="+productList1);
-//        System.out.println("chuan luon="+categoryList);
-//
-//
-//
+        System.out.println("----------------NAME CATEGORY--------------"+list5);
+    for (int i = 0; i < list5.size(); i++) {
+        for (int j = 0; j < productServiceIMPL.productList.size(); j++) {
+            if (list5.get(i).contains(productServiceIMPL.productList.get(j).getType())){
+                productList1.add(productServiceIMPL.productList.get(j));
+            }
+        }
+
+
+        ProductCategory productCategory = new ProductCategory((i+1),list5.get(i),productList1);
+        categoryList.add(productCategory);
+        new ConfigReadAndWrite<ProductCategory>().writeIntoFile(PATH_ProductCatalog,categoryList);
+
+ System.out.println(productCategory);
+
+//        System.out.println("===================== NAME CATEGORY ============== \n" + productCategory.getNameCategory());
+
+//      System.out.println("category= "+productList1);
+      productList1.clear();
+    }
+
+
 
 
 
 }
-//    @Override
-//    public void makeNameAndListForCategory(){
-//    try{
-//        WhenNameCategorySize0();
-//
-////        for (int i = 0; i < productServiceIMPL.productList.size(); i++) {
-////            if (!((nameCategories123.get(i).getCategoryName()).equals((productServiceIMPL.productList.get(i).getType())))) {
-////                System.out.println("vao-------------------day");
-////                NameCategory nameCategories = new NameCategory().setCategoryName(productServiceIMPL.productList.get(i).getType());
-////                nameCategories123.add(nameCategories);
-////                new ConfigReadAndWrite<NameCategory>().writeIntoFile(PATH,nameCategories123);
-////                for (int j = 0; j < productServiceIMPL.productList.size(); j++) {
-////                    if (nameCategories123.get(j).getCategoryName().equals(productServiceIMPL.productList.get(j).getType())) {
-////                        productList1.add(productServiceIMPL.productList.get(j));
-////                        ListProductForCategory listProductForCategory1 = new ListProductForCategory().setProductList(productList1);
-////                        list.add(listProductForCategory1);
-////                        new ConfigReadAndWrite<ListProductForCategory>().writeIntoFile(Path, list);
-////                    }
-//
-////                }
-//
-////            }
-////        }
-//    }catch (Exception e){};
-//    }
 
+ProductCategory productCategory=new ProductCategory();
     @Override
     public void makeProductCategory() {
         WhenNameCategorySize0();
-//        System.out.println("??????/");
-//        System.out.println("size="+ list5.size());
+    }
+//
+//    @Override
+//    public void render() {
+//        WhenNameCategorySize0();
+//        System.out.println("-------------this is product catalog list----------\n");
+//        System.out.println(productCategory.getNameCategory());
+//    }
 
-//        for (int i = 0; i <list5.size(); i++) {
-////            System.out.println("nameCategory="+nameCategories123.get(i).getCategoryName());
-////            if (!(categoryList.get(i).getNameCategory().equals(nameCategories123.get(i).getCategoryName()))){
-////                ProductCategory productCategory1=new ProductCategory(i,nameCategories123.get(i).getCategoryName(),list.get(i).getProductList());
-////                categoryList.add(productCategory1);
-//                new ConfigReadAndWrite<ProductCategory>().writeIntoFile(PATH_ProductCatalog,categoryList);
-////            }
+//   public void searchType() {
+//       WhenNameCategorySize0();
+//       System.out.println("list555555="+list5);
+//       System.out.println("----------PRODUCT CATEGORY LIST-----------------");
+//       System.out.println(productCategory);
+//        System.out.println(" ENTER TYPE PRODUCT: ");
+//        String type = scanner.nextLine();
+//        for (int i = 0; i < list5.size(); i++) {
+//            if (type.equalsIgnoreCase(list5.get(i))) {
+//                System.out.println(list5.get(i));
+//            } else  {
+//                System.out.println("----------->>>WE DON'T HAVE THIS TYPE PRODUCT, TRY AN OTHER ONE!");
+//                searchType();
+//            }
 //        }
-    }
-
-    @Override
-    public void render() {
-        System.out.println("-------------this is product catalog list----------");
-        System.out.println(categoryList);
-    }
-
-   public void searchType() {
-
-       System.out.println("----------PRODUCT CATEGORY LIST-----------------");
-       System.out.println(categoryList);
-        System.out.println(" ENTER TYPE PRODUCT: ");
-        String type = scanner.nextLine();
-        for (int i = 0; i < categoryList.size(); i++) {
-
-            if (type.equalsIgnoreCase(categoryList.get(i).getNameCategory())) {
-                System.out.println(categoryList.get(i));
-                if (i==categoryList.size()-1){
-                    new ProductCatalogView().manage_product_catalog();
-                }
-            } else if (i >= categoryList.size()-1) {
-                System.err.println("WE DON'T HAVE THIS TYPE PRODUCT, TRY AN OTHER ONE!");
-                searchType();
-            }
-        }
-    }
+//    }
 }
 
 //    @Override

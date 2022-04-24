@@ -3,15 +3,16 @@ package model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    int id;
+    int id,quantify;
     String productName, description, brand, type;
     double price;
 
     public Product() {
     }
 
-    public Product(int id, String productName, String description, String brand, String type, double price) {
+    public Product(int id, int quantify, String productName, String description, String brand, String type, double price) {
         this.id = id;
+        this.quantify = quantify;
         this.productName = productName;
         this.description = description;
         this.brand = brand;
@@ -25,6 +26,14 @@ public class Product implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getQuantify() {
+        return quantify;
+    }
+
+    public void setQuantify(int quantify) {
+        this.quantify = quantify;
     }
 
     public String getProductName() {
@@ -69,14 +78,14 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", description='" + description + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                '}'
-                +"\n";
+        return "\n-------------------------------------------\n"+
+                "\nid         : " + id +
+                "\nquantify   : " + quantify +
+                "\nproductName: " + productName +
+                "\ndescription: " + description +
+                "\nbrand      : " + brand +
+                "\ntype       : " + type +
+                "\nprice      : " + price
+                ;
     }
 }

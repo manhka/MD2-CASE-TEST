@@ -23,8 +23,8 @@ public class NameCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "NameCategory{" +
-                "categoryName='" + categoryName + '\'' +
-                '}'+"\n";
+        return "\n---------NameCategory__________\n" +
+                "\ncategoryName :" + categoryName +
+               "\n";
     }
 }

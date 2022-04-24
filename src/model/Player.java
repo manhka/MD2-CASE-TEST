@@ -91,14 +91,14 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", roleSet=" + roleSet +
-                '}'+"\n";
+        return "\n---------------Player---------\n" +
+                "\nid" + id +
+                " \nfirstname: " + firstname +
+                " \nlastname : " + lastname +
+                " \npassword : " + password +
+                " \nemail    : " + email +
+                " \navatar   : " + avatar +
+                " \nroleSet  : " + roleSet +
+                "\n";
     }
 }

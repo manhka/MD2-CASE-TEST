@@ -8,11 +8,11 @@ public class ProductCategoryController {
         new ProductCategoryServiceIMPL().makeProductCategory();
     }
 
-    public void render() {
-        new ProductCategoryServiceIMPL().render();
-    }
+//    public void render() {
+//        new ProductCategoryServiceIMPL().render();
+//    }
 
-    public void editType() {
+//    public void editType() {
 //        new ProductCategoryServiceIMPL().editType();
     }
 
@@ -28,7 +28,7 @@ public class ProductCategoryController {
 //    public void editProductOnCategoryList() {
 //        new ProductCategoryServiceIMPL().editProductInCategory();
 //    }
-    public void searchByTypeOnCategoryList(){
-        new ProductCategoryServiceIMPL().searchType();
-    }
-}
+//    public void searchByTypeOnCategoryList(){
+//        new ProductCategoryServiceIMPL().searchType();
+//    }
+

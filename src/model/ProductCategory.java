@@ -42,11 +42,11 @@ public class ProductCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "ProductCategory{" +
-                "id=" + id +
-                ", nameCategory='" + nameCategory + '\'' +
-                ", productList=" + productList +
-                '}'+"\n";
+        return "\n--------ProductCategory-----------\n" +
+                "\nid            : " + id +
+                "\nnameCategory  : " + nameCategory +
+                "\nproductList   : " + productList +
+                "\n";
     }
 }
 

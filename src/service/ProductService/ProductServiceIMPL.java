@@ -1,9 +1,7 @@
 package service.ProductService;
 
 import config.ConfigReadAndWrite;
-import jdk.swing.interop.SwingInterOpUtils;
 import model.Product;
-import view.LogInView;
 import view.PlayerView;
 
 import java.util.List;
@@ -26,8 +24,12 @@ public class ProductServiceIMPL implements IProductService {
     public void add() {
         boolean check=true;
         if (productList.size()==0){
+            System.out.println("?");
             System.out.println("NAME PRODUCT :");
             String name = scanner.nextLine();
+            System.out.println("HOW MANY PRODUCT:");
+            int quantify=scanner.nextInt();
+            scanner.nextLine();
             System.out.println("DESCRIPTION PRODUCT: ");
             String description = scanner.nextLine();
             System.out.println("BRAND: ");
@@ -36,18 +38,17 @@ public class ProductServiceIMPL implements IProductService {
             String type = scanner.nextLine();
             System.out.println("PRICE PRODUCT: ");
             double price = scanner.nextDouble();
-            Product products = new Product(productList.size() , name, description, brand, type, price);
+            Product products = new Product(productList.size() ,quantify, name, description, brand, type, price);
             productList.add(products);
             new ConfigReadAndWrite<Product>().writeIntoFile(PATH, productList);
             System.out.println("LIST AFTER ADD NEW PRODUCT=========>");
             System.out.println(productList);
-
+            new PlayerView().manageProduct();
         }
         System.out.println("NAME PRODUCT :");
        String name = scanner.nextLine();
         for (int i = 0; i < productList.size(); i++) {
             if ((name.equalsIgnoreCase(productList.get(i).getProductName().trim()))) {
-                System.out.println("??????");
                 System.out.println("THIS PRODUCT IS EXIT , TRY AGAIN");
                 System.out.println("PRODUCT LIST :" + productList);
                 add();
@@ -56,6 +57,9 @@ public class ProductServiceIMPL implements IProductService {
             }
         }
             if (!check) {
+                System.out.println("HOW MANY PRODUCT:");
+                int quantify=scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("DESCRIPTION PRODUCT: ");
                 String  description = scanner.nextLine();
                 System.out.println("BRAND: ");
@@ -64,20 +68,14 @@ public class ProductServiceIMPL implements IProductService {
                 String type = scanner.nextLine();
                 System.out.println("PRICE PRODUCT: ");
                 double price = scanner.nextDouble();
-                Product products = new Product(productList.size() , name, description, brand, type, price);
+                Product products = new Product(productList.size(),quantify , name, description, brand, type, price);
                 productList.add(products);
                 new ConfigReadAndWrite<Product>().writeIntoFile(PATH, productList);
                 System.out.println("LIST AFTER ADD NEW PRODUCT=========>");
                 System.out.println(productList);
                 new PlayerView().manageProduct();
-//                PlayerView  playerView=new PlayerView();
-//                playerView.manageProduct();
-                System.out.println("vao day ");
             }
     }
-
-
-
 
     @Override
     public void editByName() {boolean check=true;
@@ -97,6 +95,9 @@ public class ProductServiceIMPL implements IProductService {
                     }
                 }
                     if (!check){
+                        System.out.println("HOW MANY PRODUCT:");
+                        int quantify=scanner.nextInt();
+                        scanner.nextLine();
                         System.out.print("NEW DESCRIPTION: ");
                         String description = scanner.nextLine();
                         System.out.print("NEW BRAND: ");
@@ -106,6 +107,7 @@ public class ProductServiceIMPL implements IProductService {
                         System.out.print("NEW PRICE: ");
                         double price = scanner.nextDouble();
                         productList.get(i).setId(i);
+                        productList.get(i).getQuantify();
                         productList.get(i).setProductName(newName);
                         productList.get(i).setDescription(description);
                         productList.get(i).setBrand(brand);
@@ -151,7 +153,7 @@ public class ProductServiceIMPL implements IProductService {
             if (name.equals(productList.get(i).getProductName().trim())) {
                 System.out.println(" THIS IS YOUR PRODUCT");
                 System.out.println(productList.get(i));
-                new PlayerView().manageProduct();
+               break;
             } else if (i>=productList.size()-1){
                 System.out.println("WE DON'T HAVE THIS PRODUCT ! PLEASE, TRY AGAIN");
                 searchByName();
@@ -224,50 +226,64 @@ public class ProductServiceIMPL implements IProductService {
     @Override
     public void searchByType() {
         boolean check=true;
-        System.out.println("PRODUCT LIST :"+productList);
-        System.out.println("ENTER TYPE PRODUCT: ");
+        int count=0;
+
         String type = scanner.nextLine();
         for (int i = 0; i < productList.size(); i++) {
             if (type.equals(productList.get(i).getType().trim())) {
+                count++;
                 System.out.println("------there are all of product for this type---------");
                 System.out.println(productList.get(i));
                 if (i==productList.size()-1){
                     break;
             }
-           }else{
+           }if (count==0){
                 check=false;
             }
         }
         if (!check){
             System.out.println("WE DON'T HAVE THIS PRODUCT ! PLEASE , TRY AGAIN!!");
+            System.out.println("PRODUCT LIST :"+productList);
+            System.out.println("ENTER TYPE PRODUCT: ");
             searchByType();
         }
 
     }
 
     public void buy() {
-        System.out.println("PRODUCT LIST :"+productList);
+
         System.out.println("PRODUCT TO BUY: ");
         String name = scanner.nextLine();
+        System.out.println("how many product you want to buy: ");
+        int quantify=scanner.nextInt();
+scanner.nextLine();
         for (int i = 0; i < productList.size(); i++) {
             if (name.equals(productList.get(i).getProductName().trim())) {
-                cart.add(productList.get(i));
-                new ConfigReadAndWrite<Product>().writeIntoFile(PATH_CART, cart);
-                productList.remove(productList.get(i));
-                new ConfigReadAndWrite<Product>().writeIntoFile(PATH, productList);
-                System.out.println("------THIS IS YOUR CART -------");
-                System.out.println(cart);
-//                new PlayerView().order();
-if (i==productList.size()-1){
-    break;
-}
-            }else if(i>= productList.size()-1){ System.err.println("WE DONT HAVE THIS PRODUCT , PLEASE, TRY ANOTHER ONE");
+                if (quantify<=productList.get(i).getQuantify()) {
+                    productList.get(i).setQuantify(productList.get(i).getQuantify()-quantify);
+                    for (int j = 0; j < quantify; j++) {
+                        cart.add(productList.get(i));
+
+                    }new ConfigReadAndWrite<Product>().writeIntoFile(PATH_CART, cart);
+                    new ConfigReadAndWrite<Product>().writeIntoFile(PATH, productList);
+//                    System.out.println("------THIS IS YOUR CART -------");
+//                    System.out.println(cart);
+                    new PlayerView().order();
+                }else {
+                    System.out.println("we have only : "+productList.get(i).getQuantify()+" for this product ");
+                    System.out.println("PRODUCT LIST :"+productList);
+                    buy();
+                }
+
+     }else if(i>= productList.size()-1){ System.out.println("WE DONT HAVE THIS PRODUCT , PLEASE, TRY ANOTHER ONE");
                 buy();}
         }
 }
 
 
     public void makeBills() {
+//        System.out.println("_________your cart______");
+//        System.out.println(cart);
         double total = 0;
         for (int i = 0; i < cart.size(); i++) {
             total += cart.get(i).getPrice();

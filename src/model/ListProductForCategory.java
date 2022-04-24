@@ -24,8 +24,8 @@ public class ListProductForCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "ListProductForCategory{" +
-                "productList=" + productList +
-                '}'+"\n";
+        return "\n-----------ProductCategory-----------\n" +
+                "\nproductList:" + productList +
+                "\n";
     }
 }

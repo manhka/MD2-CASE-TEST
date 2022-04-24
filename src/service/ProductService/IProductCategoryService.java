@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProductCategoryService {
 
 
-    void render();
+//    void render();
 
 //    void editType();
 
@@ -18,5 +18,5 @@ public interface IProductCategoryService {
 //    void editProductInCategory();
 //    void makeNameAndListForCategory();
     void makeProductCategory();
-    public void searchType();
+//    public void searchType();
 }
